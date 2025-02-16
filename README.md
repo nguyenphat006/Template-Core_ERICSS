@@ -5,5 +5,5 @@ Repository Template For ERICSS
 + .Net Core 8 Web API
 + MSQL Server
 2. Frontend:
-+ NextJS 15, TypeScript, TaildwindCSS, ShadcnUI
++ NextJS 14, TypeScript, TaildwindCSS, ShadcnUI, Zustand, NextAuth
 
