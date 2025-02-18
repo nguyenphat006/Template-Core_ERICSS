@@ -20,14 +20,14 @@ export function FooterAuth() {
           <a href="#" className="text-sm text-muted-foreground">Guide</a>
         </div>
         <div className="flex items-center">
-          <Select initialValue={theme} onChange={handleThemeChange}>
+          {/* <Select initialValue={theme} onChange={handleThemeChange}>
             <Select.Option value="light">
               <Sun /> Light
             </Select.Option>
             <Select.Option value="dark">
               <Moon /> Dark
             </Select.Option>
-          </Select>
+          </Select> */}
         </div>
       </div>
       <div className="flex items-center justify-center mt-2">
