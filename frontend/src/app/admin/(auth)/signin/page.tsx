@@ -7,7 +7,8 @@ export default function LoginPage() {
     <>
       <div className="min-h-screen flex flex-col">
         <div className="grid flex-1 lg:grid-cols-2">
-          <div className="flex flex-col gap-4 p-6 md:p-10">
+          <div className="relative flex flex-col gap-4 p-6 md:p-10">
+            <div className="absolute top-0 z-[-2] h-full w-full bg-white bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)]"></div>
             <div className="flex justify-center gap-2 md:justify-start">
               <a href="#" className="flex items-center gap-2 font-medium">
                 <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
