@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import { Inter, Roboto_Mono } from "next/font/google"
 import "./globals.css"
+import ToastConfig from "@/components/Toast/ToastConfig";
+import "@/styles/styles.css"
 
 // Sử dụng font từ Google Fonts
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
@@ -15,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${inter.variable} ${robotoMono.variable} antialiased`}>
+      <ToastConfig />
         {children}
       </body>
     </html>
