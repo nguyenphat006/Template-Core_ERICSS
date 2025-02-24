@@ -78,7 +78,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
               <FormItem>
                 <div className="flex items-center justify-between">
                   <FormLabel>Password</FormLabel>
-                  <Link href="#" className="text-sm underline-offset-4 hover:underline">
+                  <Link href="/admin/forgot-password" className="text-sm underline-offset-4 hover:underline">
                     Forgot your password?
                   </Link>
                 </div>
