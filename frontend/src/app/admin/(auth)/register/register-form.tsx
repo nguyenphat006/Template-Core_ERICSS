@@ -1,10 +1,7 @@
 'use client'
-
-import { useState } from 'react'
 import * as z from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
@@ -18,40 +15,17 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
 import { RegisterSchema } from '../schema/index';
-
-// Schema validation với Zod
-const registerSchema = z.object({
-  name: z.string().min(2, { message: 'Tên ít nhất 2 ký tự' }),
-  email: z.string().email({ message: 'Email không hợp lệ' }),
-  password: z.string().min(6, { message: 'Mật khẩu ít nhất 6 ký tự' }),
-  confirmPassword: z.string().min(6, { message: 'Mật khẩu xác nhận ít nhất 6 ký tự' })
-}).refine((data) => data.password === data.confirmPassword, {
-  message: 'Mật khẩu xác nhận không khớp',
-  path: ['confirmPassword']
-})
+import { useRegister } from './useRegister'
 
 export function RegisterForm({ className, ...props }: React.ComponentPropsWithoutRef<'form'>) {
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
+  const { loading, onSubmit } = useRegister()
 
   // React Hook Form + Zod
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: { name: '', email: '', password: '', confirmPassword: '' }
   })
-
-  // Submit form
-  const onSubmit = async (data: z.infer<typeof registerSchema>) => {
-    setLoading(true)
-    console.log(data)
-    // Giả lập đăng ký thành công
-    setTimeout(() => {
-      setLoading(false)
-      router.push('/dashboard') // Redirect sau khi đăng ký
-    }, 2000)
-  }
 
   return (
     <Form {...form}>

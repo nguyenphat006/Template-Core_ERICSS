@@ -1,6 +1,4 @@
 'use client'
-
-import { useState } from 'react'
 import * as z from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -18,11 +16,10 @@ import {
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { ForgotPasswordSchema } from '../schema/index'
-
-
+import { useForgotPassword } from './useForgot'
 
 export function ForgotPasswordForm({ className, ...props }: React.ComponentPropsWithoutRef<'form'>) {
-  const [loading, setLoading] = useState(false)
+  const { loading, onSubmit } = useForgotPassword()
   const router = useRouter()
 
   // React Hook Form + Zod
@@ -30,18 +27,6 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
     resolver: zodResolver(ForgotPasswordSchema),
     defaultValues: { email: '' }
   })
-
-  // Submit form
-  const onSubmit = async (data: z.infer<typeof ForgotPasswordSchema>) => {
-    setLoading(true)
-    console.log(data)
-    // Giả lập gửi email đặt lại mật khẩu
-    setTimeout(() => {
-      setLoading(false)
-      alert('Nếu email tồn tại, bạn sẽ nhận được hướng dẫn đặt lại mật khẩu.')
-      router.push('/signin') // Redirect sau khi gửi email
-    }, 2000)
-  }
 
   return (
     <Form {...form}>

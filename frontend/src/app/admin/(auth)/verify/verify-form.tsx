@@ -1,10 +1,7 @@
 'use client'
-
-import { useState } from 'react'
-import * as z from 'zod'
 import { useForm } from 'react-hook-form'
+import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { 
   Form, 
@@ -17,28 +14,16 @@ import {
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp'
 import { Button } from '@/components/ui/button'
 import { otpSchema } from '../schema/index'
-
+import { useVerify } from './useVerify'
 
 export function VerifyForm({ className, ...props }: React.ComponentPropsWithoutRef<'form'>) {
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
+  const { loading, onSubmit } = useVerify()
 
   // React Hook Form + Zod
   const form = useForm<z.infer<typeof otpSchema>>({
     resolver: zodResolver(otpSchema),
     defaultValues: { otp: '' }
   })
-
-  // Submit form
-  const onSubmit = async (data: z.infer<typeof otpSchema>) => {
-    setLoading(true)
-    console.log(data)
-    // Giả lập xác thực OTP thành công
-    setTimeout(() => {
-      setLoading(false)
-      router.push('/admin/reset-password') // Redirect sau khi xác thực
-    }, 2000)
-  }
 
   return (
     <Form {...form}>

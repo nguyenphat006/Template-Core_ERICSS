@@ -1,10 +1,7 @@
 'use client'
-
-import { useState } from 'react'
 import * as z from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { 
   Form, 
@@ -18,27 +15,16 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { resetPasswordSchema } from '../schema/index'
 import Link from 'next/link'
+import { useReset } from './useReset'
 
 export function ResetForm({ className, ...props }: React.ComponentPropsWithoutRef<'form'>) {
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
   // React Hook Form + Zod
   const form = useForm<z.infer<typeof resetPasswordSchema>>({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: { password: '', confirmPassword: '' }
   })
 
-  // Submit form
-  const onSubmit = async (data: z.infer<typeof resetPasswordSchema>) => {
-    setLoading(true)
-    console.log(data)
-    // Giả lập reset mật khẩu thành công
-    setTimeout(() => {
-      setLoading(false)
-      alert('Mật khẩu đã được đặt lại thành công!')
-      router.push('/admin/login') // Redirect sau khi reset mật khẩu
-    }, 2000)
-  }
+  const { loading, onSubmit } = useReset()
 
   return (
     <Form {...form}>

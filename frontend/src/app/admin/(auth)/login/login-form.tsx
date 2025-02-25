@@ -1,10 +1,7 @@
 'use client'
-
-import { useState } from 'react'
 import * as z from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import { cn } from '@/lib/utils' // Nếu bạn đang dùng cn()
@@ -18,29 +15,17 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
 import { LoginSchema } from '../schema/index'
+import { useLogin } from './useLogin'
 
 export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRef<'form'>) {
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
+  const { onSubmit, loading } = useLogin()
 
   // React Hook Form + Zod
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: { email: '', password: '' }
   })
-
-  // Submit form
-  const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
-    setLoading(true)
-    console.log(data)
-    // Giả lập login thành công
-    setTimeout(() => {
-      setLoading(false)
-      router.push('/dashboard') // Redirect sau khi login
-    }, 2000)
-  }
 
   return (
     <Form {...form}>
