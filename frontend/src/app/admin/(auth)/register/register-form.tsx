@@ -146,7 +146,7 @@ export function RegisterForm({ className, ...props }: React.ComponentPropsWithou
         {/* Link đến trang đăng nhập */}
         <div className="text-center text-sm">
           Already have an account?{' '}
-          <Link href="/admin/login" className="underline underline-offset-4">
+          <Link href="/admin/login" className="underline underline-offset-4 text-blue-500 hover:text-blue-700">
             Login
           </Link>
         </div>

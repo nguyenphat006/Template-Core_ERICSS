@@ -110,7 +110,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
         {/* Link đến trang đăng ký */}
         <div className="text-center text-sm">
           Don&apos;t have an account?{' '}
-          <Link href="/admin/register" className="underline underline-offset-4">
+          <Link href="/admin/register" className="underline underline-offset-4 text-blue-500 hover:text-blue-700">
             Register
           </Link>
         </div>

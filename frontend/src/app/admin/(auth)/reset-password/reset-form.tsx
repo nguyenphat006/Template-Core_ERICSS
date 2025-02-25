@@ -5,7 +5,6 @@ import * as z from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { 
   Form, 
@@ -17,29 +16,27 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { ForgotPasswordSchema } from '../schema/index'
+import { resetPasswordSchema } from '../schema/index'
+import Link from 'next/link'
 
-
-
-export function ForgotPasswordForm({ className, ...props }: React.ComponentPropsWithoutRef<'form'>) {
+export function ResetForm({ className, ...props }: React.ComponentPropsWithoutRef<'form'>) {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
-
   // React Hook Form + Zod
-  const form = useForm<z.infer<typeof ForgotPasswordSchema>>({
-    resolver: zodResolver(ForgotPasswordSchema),
-    defaultValues: { email: '' }
+  const form = useForm<z.infer<typeof resetPasswordSchema>>({
+    resolver: zodResolver(resetPasswordSchema),
+    defaultValues: { password: '', confirmPassword: '' }
   })
 
   // Submit form
-  const onSubmit = async (data: z.infer<typeof ForgotPasswordSchema>) => {
+  const onSubmit = async (data: z.infer<typeof resetPasswordSchema>) => {
     setLoading(true)
     console.log(data)
-    // Giả lập gửi email đặt lại mật khẩu
+    // Giả lập reset mật khẩu thành công
     setTimeout(() => {
       setLoading(false)
-      alert('Nếu email tồn tại, bạn sẽ nhận được hướng dẫn đặt lại mật khẩu.')
-      router.push('/signin') // Redirect sau khi gửi email
+      alert('Mật khẩu đã được đặt lại thành công!')
+      router.push('/admin/login') // Redirect sau khi reset mật khẩu
     }, 2000)
   }
 
@@ -48,23 +45,38 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
       <form onSubmit={form.handleSubmit(onSubmit)} className={cn('flex flex-col gap-6', className)} {...props}>
         {/* Tiêu đề */}
         <div className="flex flex-col items-center gap-2 text-center">
-          <h1 className="text-2xl font-bold">Forgot Password?</h1>
+          <h1 className="text-2xl font-bold">Reset Your Password</h1>
           <p className="text-balance text-sm text-muted-foreground">
-            Enter your email below and we&apos;ll send you a link to reset your password.
+            Enter your new password below.
           </p>
         </div>
 
         {/* Form */}
         <div className="grid gap-6">
-          {/* Input Email */}
+          {/* Input Password */}
           <FormField
             control={form.control}
-            name="email"
+            name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>New Password</FormLabel>
                 <FormControl>
-                  <Input {...field} type="email" placeholder="m@example.com" />
+                  <Input {...field} type="password" placeholder="******" />
+                </FormControl>
+                <FormMessage /> {/* Hiển thị lỗi nếu có */}
+              </FormItem>
+            )}
+          />
+
+          {/* Input Confirm Password */}
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Confirm New Password</FormLabel>
+                <FormControl>
+                  <Input {...field} type="password" placeholder="******" />
                 </FormControl>
                 <FormMessage /> {/* Hiển thị lỗi nếu có */}
               </FormItem>
@@ -73,11 +85,11 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
 
           {/* Button Submit */}
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? 'Sending...' : 'Send Reset Link'}
+            {loading ? 'Resetting...' : 'Reset Password'}
           </Button>
         </div>
 
-        {/* Link về trang đăng nhập */}
+        {/* Link quay về đăng nhập */}
         <div className="text-center text-sm">
           Remembered your password?{' '}
           <Link href="/admin/login" className="underline underline-offset-4 text-blue-500 hover:text-blue-700">

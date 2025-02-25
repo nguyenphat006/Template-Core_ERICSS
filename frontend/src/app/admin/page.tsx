@@ -18,6 +18,6 @@
 import { redirect } from 'next/navigation'
 
 export default function AdminPage() {
-  redirect('/admin/signin') // Chuyển hướng đến trang đăng nhập
+  redirect('/admin/login') // Chuyển hướng đến trang đăng nhập
   return null
 }
