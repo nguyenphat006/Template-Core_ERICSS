@@ -3,7 +3,7 @@ import { Inter, Roboto_Mono } from "next/font/google"
 import "./globals.css"
 import ToastConfig from "@/components/Toast/ToastConfig";
 import "@/styles/styles.css"
-
+import { ThemeProvider } from "@/components/theme-provider";
 // Sử dụng font từ Google Fonts
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 const robotoMono = Roboto_Mono({ subsets: ["latin"], variable: "--font-roboto-mono" })
@@ -15,10 +15,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${robotoMono.variable} antialiased`}>
       <ToastConfig />
-        {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
       </body>
     </html>
   )

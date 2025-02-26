@@ -1,15 +1,9 @@
 'use client'
 import { useState } from "react"
-import { Select } from "@/components/ui/select"
-import { Sun, Moon } from "@geist-ui/icons"
+import { ModeToggle } from "../mode-toggle"
 
 export function FooterAuth() {
-  const [theme, setTheme] = useState("light")
 
-  const handleThemeChange = (value: string) => {
-    setTheme(value)
-    // Add logic to change the theme here
-  }
 
   return (
     <footer className="h-20 border-t flex flex-col items-center justify-center">
@@ -20,14 +14,7 @@ export function FooterAuth() {
           <a href="#" className="text-sm text-muted-foreground">Guide</a>
         </div>
         <div className="flex items-center">
-          {/* <Select initialValue={theme} onChange={handleThemeChange}>
-            <Select.Option value="light">
-              <Sun /> Light
-            </Select.Option>
-            <Select.Option value="dark">
-              <Moon /> Dark
-            </Select.Option>
-          </Select> */}
+            <ModeToggle />
         </div>
       </div>
       <div className="flex items-center justify-center mt-2">
