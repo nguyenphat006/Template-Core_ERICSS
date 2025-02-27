@@ -32,7 +32,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
       <form onSubmit={form.handleSubmit(onSubmit)} className={cn('flex flex-col gap-6', className)} {...props}>
         {/* Tiêu đề */}
         <div className="flex flex-col items-center gap-2 text-center">
-          <h1 className="text-2xl font-bold">Login to your account</h1>
+          <h1 className="text-2xl font-bold dark:text-black">Login to your account</h1>
           <p className="text-balance text-sm text-muted-foreground">
             Enter your email below to login to your account
           </p>
@@ -46,7 +46,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel className="dark:text-black">Email</FormLabel>
                 <FormControl>
                   <Input {...field} type="email" placeholder="m@example.com" />
                 </FormControl>
@@ -62,7 +62,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
             render={({ field }) => (
               <FormItem>
                 <div className="flex items-center justify-between">
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className="dark:text-black">Password</FormLabel>
                   <Link href="/admin/forgot-password" className="text-sm underline-offset-4 hover:underline">
                     Forgot your password?
                   </Link>
@@ -76,7 +76,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
           />
 
           {/* Button Submit */}
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button type="submit" className="w-full dark:bg-black" disabled={loading}>
             {loading ? 'Loading...' : 'Login'}
           </Button>
 
