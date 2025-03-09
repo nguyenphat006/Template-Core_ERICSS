@@ -32,9 +32,9 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
       <form onSubmit={form.handleSubmit(onSubmit)} className={cn('flex flex-col gap-6', className)} {...props}>
         {/* Tiêu đề */}
         <div className="flex flex-col items-center gap-2 text-center">
-          <h1 className="text-2xl font-bold dark:text-black">Login to your account</h1>
+          <h1 className="text-2xl font-bold dark:text-black">Chào mừng quay trở lại</h1>
           <p className="text-balance text-sm text-muted-foreground">
-            Enter your email below to login to your account
+            Nhập email và mật khẩu của bạn để đăng nhập vào tài khoản của bạn.
           </p>
         </div>
 
@@ -62,9 +62,9 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
             render={({ field }) => (
               <FormItem>
                 <div className="flex items-center justify-between">
-                  <FormLabel className="dark:text-black">Password</FormLabel>
+                  <FormLabel className="dark:text-black">Mật khẩu</FormLabel>
                   <Link href="/admin/forgot-password" className="text-sm underline-offset-4 hover:underline">
-                    Forgot your password?
+                    Quên mật khẩu?
                   </Link>
                 </div>
                 <FormControl>
@@ -83,20 +83,20 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
           {/* Hoặc login bằng Google */}
           <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
             <span className="relative z-10 bg-background px-2 text-muted-foreground">
-              Or continue with
+              Hoặc tiếp tục với
             </span>
           </div>
           <Button variant="outline" className="w-full">
             <Image src="/iconSvg/google.svg" alt="Google" width={20} height={20} />
-            Login with Google
+            Đăng nhập bằng google
           </Button>
         </div>
 
         {/* Link đến trang đăng ký */}
         <div className="text-center text-sm">
-          Don&apos;t have an account?{' '}
+          {/* Don&apos;t have an account?{' '} */}Chưa có tài khoản?{' '}
           <Link href="/admin/register" className="underline underline-offset-4 text-blue-500 hover:text-blue-700">
-            Register
+            Đăng ký tại đây
           </Link>
         </div>
       </form>
