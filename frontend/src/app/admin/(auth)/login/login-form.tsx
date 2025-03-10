@@ -32,9 +32,9 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
       <form onSubmit={form.handleSubmit(onSubmit)} className={cn('flex flex-col gap-6', className)} {...props}>
         {/* Tiêu đề */}
         <div className="flex flex-col items-center gap-2 text-center">
-          <h1 className="text-2xl font-bold dark:text-black">Chào mừng quay trở lại</h1>
-          <p className="text-balance text-sm text-muted-foreground">
-            Nhập email và mật khẩu của bạn để đăng nhập vào tài khoản của bạn.
+          <h1 className="text-4xl font-bold dark:text-black">Chào mừng quay trở lại</h1>
+          <p className="text-balance text-md text-muted-foreground">
+            Nhập email và mật khẩu của bạn phía bên dưới
           </p>
         </div>
 
@@ -76,8 +76,8 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
           />
 
           {/* Button Submit */}
-          <Button type="submit" className="w-full dark:bg-black" disabled={loading}>
-            {loading ? 'Loading...' : 'Login'}
+          <Button size="xl" type="submit" className="w-full bg-[#6366f1] hover:bg-[#5044ee]" disabled={loading}>
+            {loading ? 'Đang đăng nhập...' : 'Đăng nhập'}
           </Button>
 
           {/* Hoặc login bằng Google */}

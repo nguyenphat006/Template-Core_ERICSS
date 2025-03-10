@@ -21,6 +21,9 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
               {children}
             </div>
           </div>
+          <footer className="text-center py-4">
+            © All rights reserved. Made by <span className="hover:text-blue-500 transition-colors duration-300 cursor-pointer">ERICSS</span>
+          </footer>
         </div>
         <div className="relative hidden bg-muted lg:block">
           <img
@@ -30,9 +33,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           />
         </div>
       </div>      
-    </div>
-    {/* <FooterAuth /> */}
+    </div>    
     </>
-    
   )
 }

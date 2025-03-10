@@ -31,9 +31,9 @@ export function ResetForm({ className, ...props }: React.ComponentPropsWithoutRe
       <form onSubmit={form.handleSubmit(onSubmit)} className={cn('flex flex-col gap-6', className)} {...props}>
         {/* Tiêu đề */}
         <div className="flex flex-col items-center gap-2 text-center">
-          <h1 className="text-2xl font-bold">Reset Your Password</h1>
-          <p className="text-balance text-sm text-muted-foreground">
-            Enter your new password below.
+          <h1 className="text-4xl font-bold">Đặt lại mật khẩu</h1>
+          <p className="text-balance text-md text-muted-foreground">
+            Nhập mật khẩu mới của bạn bên dưới.
           </p>
         </div>
 
@@ -45,7 +45,7 @@ export function ResetForm({ className, ...props }: React.ComponentPropsWithoutRe
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>New Password</FormLabel>
+                <FormLabel>Mật khẩu mới</FormLabel>
                 <FormControl>
                   <Input {...field} type="password" placeholder="******" />
                 </FormControl>
@@ -60,7 +60,7 @@ export function ResetForm({ className, ...props }: React.ComponentPropsWithoutRe
             name="confirmPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Confirm New Password</FormLabel>
+                <FormLabel>Xác nhận mật khẩu mới</FormLabel>
                 <FormControl>
                   <Input {...field} type="password" placeholder="******" />
                 </FormControl>
@@ -70,16 +70,16 @@ export function ResetForm({ className, ...props }: React.ComponentPropsWithoutRe
           />
 
           {/* Button Submit */}
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? 'Resetting...' : 'Reset Password'}
+          <Button size="xl" type="submit" className="w-full bg-[#6366f1] hover:bg-[#5044ee]" disabled={loading}>
+            {loading ? 'Đang xử lý...' : 'Đặt lại mật khẩu'}
           </Button>
         </div>
 
         {/* Link quay về đăng nhập */}
         <div className="text-center text-sm">
-          Remembered your password?{' '}
+          Nhớ mật khẩu?{' '}
           <Link href="/admin/login" className="underline underline-offset-4 text-blue-500 hover:text-blue-700">
-            Login
+            Đăng nhập
           </Link>
         </div>
       </form>

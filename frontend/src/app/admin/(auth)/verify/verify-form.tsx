@@ -30,9 +30,9 @@ export function VerifyForm({ className, ...props }: React.ComponentPropsWithoutR
       <form onSubmit={form.handleSubmit(onSubmit)} className={cn('flex flex-col gap-6', className)} {...props}>
         {/* Tiêu đề */}
         <div className="flex flex-col items-center gap-2 text-center">
-          <h1 className="text-2xl font-bold">Enter Verification Code</h1>
-          <p className="text-balance text-sm text-muted-foreground">
-            We have sent a 6-digit OTP to your email. Please enter it below.
+          <h1 className="text-4xl font-bold">Nhập mã xác minh</h1>
+          <p className="text-balance text-md text-muted-foreground">
+            Chúng tôi đã gửi mã OTP gồm 6 chữ số đến email của bạn. Vui lòng nhập mã bên dưới.
           </p>
         </div>
 
@@ -42,7 +42,7 @@ export function VerifyForm({ className, ...props }: React.ComponentPropsWithoutR
           name="otp"
           render={({ field }) => (
             <FormItem className="flex flex-col items-center">
-              <FormLabel>Enter OTP</FormLabel>
+              <FormLabel>Nhập mã OTP</FormLabel>
               <FormControl>
                 <InputOTP maxLength={6} {...field}>
                   <InputOTPGroup>
@@ -58,15 +58,15 @@ export function VerifyForm({ className, ...props }: React.ComponentPropsWithoutR
         />
 
         {/* Button Submit */}
-        <Button type="submit" className="w-full" disabled={loading}>
-          {loading ? 'Verifying...' : 'Verify OTP'}
+        <Button size="xl" type="submit" className="w-full bg-[#6366f1] hover:bg-[#5044ee]" disabled={loading}>
+          {loading ? 'Đang xác minh...' : 'Xác minh OTP'}
         </Button>
 
         {/* Link để gửi lại OTP */}
         <div className="text-center text-sm">
-          Didn't receive the code?{' '}
+          Không nhận được mã?{' '}
           <button type="button" className="underline underline-offset-4 text-blue-500 hover:text-blue-700">
-            Resend OTP
+            Gửi lại OTP
           </button>
         </div>
       </form>

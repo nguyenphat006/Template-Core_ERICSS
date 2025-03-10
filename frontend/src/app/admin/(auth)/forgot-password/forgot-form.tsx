@@ -33,9 +33,9 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
       <form onSubmit={form.handleSubmit(onSubmit)} className={cn('flex flex-col gap-6', className)} {...props}>
         {/* Tiêu đề */}
         <div className="flex flex-col items-center gap-2 text-center">
-          <h1 className="text-2xl font-bold">Forgot Password?</h1>
-          <p className="text-balance text-sm text-muted-foreground">
-            Enter your email below and we&apos;ll send you a link to reset your password.
+          <h1 className="text-4xl font-bold">Quên mật khẩu?</h1>
+          <p className="text-balance text-md text-muted-foreground">
+            Nhập email của bạn bên dưới và chúng tôi sẽ gửi cho bạn một liên kết để đặt lại mật khẩu.
           </p>
         </div>
 
@@ -57,16 +57,16 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
           />
 
           {/* Button Submit */}
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? 'Sending...' : 'Send Reset Link'}
+          <Button size="xl" type="submit" className="w-full bg-[#6366f1] hover:bg-[#5044ee]" disabled={loading}>
+            {loading ? 'Đang gửi...' : 'Xác nhận'}
           </Button>
         </div>
 
         {/* Link về trang đăng nhập */}
         <div className="text-center text-sm">
-          Remembered your password?{' '}
+          Đã nhớ mật khẩu?{' '}
           <Link href="/admin/login" className="underline underline-offset-4 text-blue-500 hover:text-blue-700">
-            Login
+            Đăng nhập
           </Link>
         </div>
       </form>
