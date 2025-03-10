@@ -13,7 +13,7 @@ export function useLogin() {
     // Simulate successful login
     setTimeout(() => {
       setLoading(false)
-      router.push('/dashboard') // Redirect after login
+      router.push('/admin/dashboard') // Redirect after login
     }, 2000)
   }
 
