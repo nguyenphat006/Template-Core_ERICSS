@@ -32,8 +32,8 @@ export const Sidebar = () => {
         )}
       >
         {/* Header */}
-        <div className="flex items-center justify-between h-16 px-4 border-b border-gray-200 dark:border-gray-800">
-          <div className="flex items-center">
+        <div className="flex items-center justify-between h-18 px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+          <div className="flex items-center justify-center w-full">
             {isExpanded ? (
               <Image
                 src="/img/logo/logo-ericss.png"
@@ -62,7 +62,7 @@ export const Sidebar = () => {
         </div>
 
         {/* Menu Items */}
-        <nav className="flex flex-col gap-2 p-4 overflow-y-auto">
+        <nav className="flex flex-col gap-4 p-4 overflow-y-auto">
           {menuItems.map((item) => (
             <SidebarItem key={item.title} item={item} />
           ))}
