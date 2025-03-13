@@ -63,7 +63,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
               <FormItem>
                 <div className="flex items-center justify-between">
                   <FormLabel className="dark:text-black">Mật khẩu</FormLabel>
-                  <Link href="/admin/forgot-password" className="text-sm underline-offset-4 hover:underline">
+                  <Link href="/forgot-password" className="text-sm underline-offset-4 hover:underline">
                     Quên mật khẩu?
                   </Link>
                 </div>
@@ -95,7 +95,7 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
         {/* Link đến trang đăng ký */}
         <div className="text-center text-sm">
           {/* Don&apos;t have an account?{' '} */}Chưa có tài khoản?{' '}
-          <Link href="/admin/register" className="underline underline-offset-4 text-blue-500 hover:text-blue-700">
+          <Link href="/register" className="underline underline-offset-4 text-blue-500 hover:text-blue-700">
             Đăng ký tại đây
           </Link>
         </div>
