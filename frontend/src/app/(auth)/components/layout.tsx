@@ -1,5 +1,5 @@
 import { GalleryVerticalEnd } from "lucide-react"
-import { FooterAuth } from "@/components/layout/footerAuth"
+import { FooterAuth } from "@/components/layout/Auth/footerAuth"
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (

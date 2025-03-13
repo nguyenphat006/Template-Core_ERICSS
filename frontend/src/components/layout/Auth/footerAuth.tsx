@@ -1,6 +1,6 @@
 'use client'
 import { useState } from "react"
-import { ModeToggle } from "../mode-toggle"
+import { ModeToggle } from "../../mode-toggle"
 
 export function FooterAuth() {
 
