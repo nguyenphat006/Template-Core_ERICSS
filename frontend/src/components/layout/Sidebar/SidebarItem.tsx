@@ -119,7 +119,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
       {/* Submenu với animation */}
       <div
         className={cn(
-          "overflow-hidden transition-all duration-300 ease-in-out",
+          "overflow-hidden transition-all duration-400 ease-in-out",
           isSubmenuOpen && isExpanded ? "max-h-96" : "max-h-0"
         )}
       >
