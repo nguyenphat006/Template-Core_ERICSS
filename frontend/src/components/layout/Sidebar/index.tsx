@@ -24,30 +24,30 @@ export const Sidebar = () => {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed top-0 left-0 z-50 h-full w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800",
+          "fixed top-0 left-0 z-50 h-full bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800",
           "transition-all duration-300 ease-in-out",
           "lg:translate-x-0",
-          isExpanded ? "w-72" : "w-20",
+          isExpanded ? "w-80" : "w-24",
           isMobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         )}
       >
         {/* Header */}
-        <div className="flex items-center justify-between h-18 px-4 py-2 border-b border-gray-200 dark:border-gray-800">
+        <div className="flex items-center justify-between h-20 px-6 py-4 border-b border-gray-200 dark:border-gray-800">
           <div className="flex items-center justify-center w-full">
             {isExpanded ? (
               <Image
                 src="/img/logo/logo-ericss.png"
                 alt="Logo"
-                width={120}
-                height={30}
+                width={140}
+                height={35}
                 className="dark:hidden"
               />
             ) : (
               <Image
                 src="/img/logo/logo-ericss.png"
                 alt="Logo"
-                width={30}
-                height={30}
+                width={35}
+                height={35}
                 className="dark:hidden"
               />
             )}
@@ -61,22 +61,33 @@ export const Sidebar = () => {
           </button>
         </div>
 
-        {/* Menu Items */}
-        <nav className="flex flex-col gap-4 p-4 overflow-y-auto">
-          {menuItems.map((item) => (
-            <SidebarItem key={item.title} item={item} />
+        {/* Menu Items with Sections */}
+        <nav className="flex flex-col gap-8 p-6 overflow-y-auto">
+          {menuItems.map((section, index) => (
+            <div key={section.sectionTitle} className="flex flex-col gap-4">
+              {isExpanded && (
+                <h3 className="px-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  {section.sectionTitle}
+                </h3>
+              )}
+              <div className="flex flex-col gap-1">
+                {section.items.map((item) => (
+                  <SidebarItem key={item.title} item={item} />
+                ))}
+              </div>
+            </div>
           ))}
         </nav>
 
         {/* Footer */}
         {isExpanded && (
-          <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 dark:border-gray-800">
-            <div className="flex items-center gap-3">
+          <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-200 dark:border-gray-800">
+            <div className="flex items-center gap-4">
               <Image
                 src="/img/logo/logo-avat.png"
                 alt="User"
-                width={40}
-                height={40}
+                width={45}
+                height={45}
                 className="rounded-full"
               />
               <div className="flex-1 min-w-0">
@@ -95,7 +106,7 @@ export const Sidebar = () => {
       {/* Toggle Button (Mobile) */}
       <button
         onClick={toggleMobileSidebar}
-        className="fixed bottom-4 right-4 p-3 bg-primary text-white rounded-full shadow-lg lg:hidden"
+        className="fixed bottom-4 right-4 p-3 bg-[#6B7AE9] text-white rounded-full shadow-lg lg:hidden"
         aria-label="Toggle Mobile Menu"
       >
         <MdMenu className="w-6 h-6" />

@@ -1,4 +1,4 @@
-import { MenuItem } from "../types/sidebar.types";
+import { MenuItem, MenuSection } from "../types/sidebar.types";
 import { 
   MdDashboard, 
   MdPerson, 
@@ -6,81 +6,122 @@ import {
   MdShoppingCart,
   MdBarChart,
   MdEmail,
-  MdCalendarToday
+  MdCalendarToday,
+  MdBusinessCenter,
+  MdLibraryBooks
 } from "react-icons/md";
 
-export const menuItems: MenuItem[] = [
+export const menuItems: MenuSection[] = [
   {
-    title: "Dashboard",
-    path: "/admin/dashboard",
-    icon: MdDashboard,
+    sectionTitle: "Overview",
+    items: [
+      {
+        title: "Dashboard",
+        path: "/admin/dashboard",
+        icon: MdDashboard,
+      }
+    ]
   },
   {
-    title: "E-commerce",
-    icon: MdShoppingCart,
-    submenu: [
+    sectionTitle: "Applications",
+    items: [
       {
-        title: "Products",
-        path: "/dashboard/products",
+        title: "E-commerce",
+        icon: MdShoppingCart,
+        submenu: [
+          {
+            title: "Products",
+            path: "/admin/products",
+          },
+          {
+            title: "Orders",
+            path: "/admin/orders",
+            badge: "New",
+          },
+          {
+            title: "Customers",
+            path: "/admin/customers",
+          },
+        ],
       },
       {
-        title: "Orders",
-        path: "/dashboard/orders",
-        badge: "New",
+        title: "Analytics",
+        icon: MdBarChart,
+        submenu: [
+          {
+            title: "Reports",
+            path: "/admin/reports",
+          },
+          {
+            title: "Statistics",
+            path: "/admin/statistics",
+          },
+        ],
       },
       {
-        title: "Customers",
-        path: "/dashboard/customers",
+        title: "Calendar",
+        path: "/admin/calendar",
+        icon: MdCalendarToday,
       },
-    ],
+      {
+        title: "Email",
+        path: "/admin/email",
+        icon: MdEmail,
+        badge: 4,
+      },
+    ]
   },
   {
-    title: "Analytics",
-    icon: MdBarChart,
-    submenu: [
+    sectionTitle: "Business",
+    items: [
       {
-        title: "Reports",
-        path: "/dashboard/reports",
+        title: "Projects",
+        icon: MdBusinessCenter,
+        submenu: [
+          {
+            title: "All Projects",
+            path: "/admin/projects",
+          },
+          {
+            title: "Tasks",
+            path: "/admin/tasks",
+          }
+        ]
       },
       {
-        title: "Statistics",
-        path: "/dashboard/statistics",
-      },
-    ],
+        title: "Documents",
+        icon: MdLibraryBooks,
+        path: "/admin/documents",
+      }
+    ]
   },
   {
-    title: "Calendar",
-    path: "/dashboard/calendar",
-    icon: MdCalendarToday,
-  },
-  {
-    title: "Email",
-    path: "/dashboard/email",
-    icon: MdEmail,
-    badge: 4,
-  },
-  {
-    title: "User Management",
-    icon: MdPerson,
-    roles: ["admin"],
-    submenu: [
+    sectionTitle: "Administration",
+    items: [
       {
-        title: "Users",
-        path: "/dashboard/users",
+        title: "User Management",
+        icon: MdPerson,
+        roles: ["admin"],
+        submenu: [
+          {
+            title: "Users",
+            path: "/admin/users",
+          },
+          {
+            title: "Roles",
+            path: "/admin/roles",
+          },
+          {
+            title: "Permissions",
+            path: "/admin/permissions",
+          },
+        ],
       },
       {
-        title: "Roles",
-        path: "/dashboard/roles",
+        title: "Settings",
+        path: "/admin/settings",
+        icon: MdSettings,
       },
-      {
-        title: "Permissions",
-        path: "/dashboard/permissions",
-      },
-    ],
-  },
-  {
-    title: "Settings",
-    path: "/dashboard/settings",
-    icon: MdSettings,
-  },
+    ]
+  }
 ]; 

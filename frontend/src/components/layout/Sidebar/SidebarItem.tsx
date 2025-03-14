@@ -31,11 +31,10 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
   return (
     <div className="relative">
       {item.submenu ? (
-        // Nếu có submenu, chỉ dùng div để handle click mở submenu
         <div
           onClick={handleClick}
           className={cn(
-            "flex items-center gap-3 px-3 py-3 rounded-lg cursor-pointer transition-all",
+            "flex items-center gap-3 px-4 py-3.5 rounded-lg cursor-pointer transition-all",
             "hover:bg-gray-100 dark:hover:bg-gray-800",
             isActive && "bg-gray-100 dark:bg-gray-800",
             !isExpanded && "justify-center"
@@ -45,7 +44,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
             <item.icon
               className={cn(
                 "w-5 h-5",
-                isActive ? "text-primary" : "text-gray-500"
+                isActive ? "text-[#6B7AE9]" : "text-gray-500"
               )}
             />
           )}
@@ -55,21 +54,21 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
               <span
                 className={cn(
                   "flex-1",
-                  isActive ? "text-primary font-medium" : "text-black dark:text-gray-300"
+                  isActive ? "text-[#6B7AE9] font-medium" : "text-black dark:text-gray-300"
                 )}
               >
                 {item.title}
               </span>
   
               {item.badge && (
-                <span className="px-2 py-1 text-xs font-medium text-white bg-primary rounded-full">
+                <span className="px-2 py-1 text-xs font-medium text-white bg-[#6B7AE9] rounded-full">
                   {item.badge}
                 </span>
               )}
   
               <MdKeyboardArrowDown
                 className={cn(
-                  "w-5 h-5 transition-transform",
+                  "w-5 h-5 transition-transform duration-200",
                   isSubmenuOpen && "rotate-180"
                 )}
               />
@@ -77,12 +76,11 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
           )}
         </div>
       ) : (
-        // Nếu không có submenu, bọc toàn bộ item bằng Link
         <Link
           key={item.path}
           href={item.path || ""}
           className={cn(
-            "flex items-center gap-3 px-3 py-3 rounded-lg transition-all",
+            "flex items-center gap-3 px-4 py-3.5 rounded-lg transition-all",
             "hover:bg-gray-100 dark:hover:bg-gray-800",
             isActive && "bg-gray-100 dark:bg-gray-800",
             !isExpanded && "justify-center"
@@ -92,7 +90,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
             <item.icon
               className={cn(
                 "w-5 h-5",
-                isActive ? "text-primary" : "text-gray-500"
+                isActive ? "text-[#6B7AE9]" : "text-gray-500"
               )}
             />
           )}
@@ -102,14 +100,14 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
               <span
                 className={cn(
                   "flex-1",
-                  isActive ? "text-primary font-medium" : "text-black dark:text-gray-300"
+                  isActive ? "text-[#6B7AE9] font-medium" : "text-black dark:text-gray-300"
                 )}
               >
                 {item.title}
               </span>
   
               {item.badge && (
-                <span className="px-2 py-1 text-xs font-medium text-white bg-primary rounded-full">
+                <span className="px-2 py-1 text-xs font-medium text-white bg-[#6B7AE9] rounded-full">
                   {item.badge}
                 </span>
               )}
@@ -118,15 +116,20 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
         </Link>
       )}
   
-      {/* Submenu */}
-      {item.submenu && isSubmenuOpen && isExpanded && (
+      {/* Submenu với animation */}
+      <div
+        className={cn(
+          "overflow-hidden transition-all duration-300 ease-in-out",
+          isSubmenuOpen && isExpanded ? "max-h-96" : "max-h-0"
+        )}
+      >
         <div className="pl-4 mt-1 space-y-1">
-          {item.submenu.map((subItem) => (
+          {item.submenu?.map((subItem) => (
             <Link
               key={subItem.path}
               href={subItem.path}
               className={cn(
-                "flex items-center gap-2 px-3 py-2 rounded-lg transition-all",
+                "flex items-center gap-2 px-4 py-3 rounded-lg transition-all",
                 "hover:bg-gray-100 dark:hover:bg-gray-800",
                 pathname === subItem.path && "bg-gray-100 dark:bg-gray-800"
               )}
@@ -135,29 +138,28 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({ item }) => {
                 <subItem.icon
                   className={cn(
                     "w-4 h-4",
-                    pathname === subItem.path ? "text-primary" : "text-gray-500"
+                    pathname === subItem.path ? "text-[#6B7AE9]" : "text-gray-500"
                   )}
                 />
               )}
               <span
                 className={cn(
                   pathname === subItem.path
-                    ? "text-primary font-medium"
+                    ? "text-[#6B7AE9] font-medium"
                     : "text-gray-700 dark:text-gray-300"
                 )}
               >
                 {subItem.title}
               </span>
               {subItem.badge && (
-                <span className="px-2 py-1 text-xs font-medium text-white bg-primary rounded-full ml-auto">
+                <span className="px-2 py-1 text-xs font-medium text-white bg-[#6B7AE9] rounded-full ml-auto">
                   {subItem.badge}
                 </span>
               )}
             </Link>
           ))}
         </div>
-      )}
+      </div>
     </div>
   );
-  
 }; 
