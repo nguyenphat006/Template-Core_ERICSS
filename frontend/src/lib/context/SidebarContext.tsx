@@ -1,16 +1,19 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { SidebarContextType } from "../types/sidebar.types";
+
+interface SidebarContextType {
+  isExpanded: boolean;
+  isMobileOpen: boolean;
+  activeItem: string | null;
+  toggleSidebar: () => void;
+  toggleMobileSidebar: () => void;
+  setActiveItem: (path: string) => void;
+  expandSidebar: () => void;
+  collapseSidebar: () => void;
+  isMobile: boolean;
+}
 
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
-
-export const useSidebar = () => {
-  const context = useContext(SidebarContext);
-  if (!context) {
-    throw new Error("useSidebar must be used within a SidebarProvider");
-  }
-  return context;
-};
 
 export const SidebarProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -18,29 +21,56 @@ export const SidebarProvider: React.FC<{ children: React.ReactNode }> = ({
   const [isExpanded, setIsExpanded] = useState(true);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeItem, setActiveItem] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Handle responsive behavior
+  // Kiểm tra nếu là mobile
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 1024) {
-        setIsExpanded(false);
-      }
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
+    checkIfMobile();
+    window.addEventListener("resize", checkIfMobile);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", checkIfMobile);
     };
   }, []);
 
+  // Đóng sidebar khi chuyển sang mobile
+  useEffect(() => {
+    if (isMobile) {
+      setIsExpanded(false);
+      setIsMobileOpen(false);
+    } else {
+      setIsExpanded(true);
+    }
+  }, [isMobile]);
+
   const toggleSidebar = () => {
-    setIsExpanded((prev) => !prev);
+    if (!isMobile) {
+      setIsExpanded(!isExpanded);
+    }
   };
 
   const toggleMobileSidebar = () => {
-    setIsMobileOpen((prev) => !prev);
+    // Khi mở mobile sidebar, luôn mở full thông tin
+    if (!isMobileOpen) {
+      setIsExpanded(true);
+    }
+    setIsMobileOpen(!isMobileOpen);
+  };
+
+  const expandSidebar = () => {
+    if (!isMobile) {
+      setIsExpanded(true);
+    }
+  };
+
+  const collapseSidebar = () => {
+    if (!isMobile) {
+      setIsExpanded(false);
+    }
   };
 
   return (
@@ -52,9 +82,20 @@ export const SidebarProvider: React.FC<{ children: React.ReactNode }> = ({
         toggleSidebar,
         toggleMobileSidebar,
         setActiveItem,
+        expandSidebar,
+        collapseSidebar,
+        isMobile,
       }}
     >
       {children}
     </SidebarContext.Provider>
   );
+};
+
+export const useSidebar = () => {
+  const context = useContext(SidebarContext);
+  if (context === undefined) {
+    throw new Error("useSidebar must be used within a SidebarProvider");
+  }
+  return context;
 };
