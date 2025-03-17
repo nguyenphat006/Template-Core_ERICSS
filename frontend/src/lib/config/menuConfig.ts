@@ -31,7 +31,7 @@ export const menuItems: MenuSection[] = [
         submenu: [
           {
             title: "Products",
-            path: "/admin/products",
+            path: "/admin/product",
           },
           {
             title: "Orders",
