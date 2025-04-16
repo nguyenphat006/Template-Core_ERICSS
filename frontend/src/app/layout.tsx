@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import { Inter, Roboto_Mono } from "next/font/google"
-import "./globals.css"
+import "../styles/globals.css"
 import  { Toast } from "@/components/toast/toastify";
 import "@/styles/styles.css"
 import { ThemeProvider } from "@/components/theme-provider";

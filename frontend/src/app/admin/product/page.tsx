@@ -1,5 +1,5 @@
 "use client"
-import { useSetPageTitle } from "@/lib/hooks/useSetPageTitle";
+import { useSetPageTitle } from "@/hooks/useSetPageTitle";
 import React from "react";
 
 export default function ProductPage() {

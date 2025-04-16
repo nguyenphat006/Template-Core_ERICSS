@@ -1,5 +1,5 @@
 import { createAction, createSlice } from "@reduxjs/toolkit";
-import { AppDispatch } from "@/lib/store";
+import { AppDispatch } from "@/store/store";
 
 export const revertAll = createAction("REVERT_ALL");
 

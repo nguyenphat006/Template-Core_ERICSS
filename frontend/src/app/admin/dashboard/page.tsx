@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useSetPageTitle } from "@/lib/hooks/useSetPageTitle";
+import { useSetPageTitle } from "@/hooks/useSetPageTitle";
 
 export default function DashboardPage() {
   // Hook sẽ tự động cập nhật tiêu đề dựa trên đường dẫn

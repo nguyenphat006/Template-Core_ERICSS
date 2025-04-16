@@ -1,7 +1,7 @@
 "use client"
 
 import { useSelector, useDispatch } from "react-redux";
-import { closeAlert, confirmAction } from "@/lib/features/alert/alertSlice";
+import { closeAlert, confirmAction } from "@/store/features/alert/alertSlice";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "./button";
 import { ReactNode } from "react";

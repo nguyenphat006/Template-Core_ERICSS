@@ -1,6 +1,6 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import authReducer from "./features/auth/authSlice";
-import alertReducer from "./features/alert/alertSlice"
+import authReducer from "../store/features/auth/authSlice";
+import alertReducer from "../store/features/alert/alertSlice"
 import { persistReducer, persistStore, Persistor } from "redux-persist";
 import {
   FLUSH,
