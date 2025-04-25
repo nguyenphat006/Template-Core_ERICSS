@@ -4,6 +4,7 @@ import axios, {
     AxiosResponse,
     InternalAxiosRequestConfig,
   } from 'axios';
+import { getToken, setToken, removeToken } from './auth';
   
   // Định nghĩa URL gốc cho API, lấy từ biến môi trường
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:4000';
@@ -13,6 +14,11 @@ import axios, {
   
   // Promise dùng để giữ quá trình refresh hiện tại
   let refreshPromise: Promise<any> | null = null;
+  
+  // Thêm interface mở rộng cho config
+  interface ExtendedInternalAxiosRequestConfig extends InternalAxiosRequestConfig {
+    _retry?: boolean;
+  }
   
   //
   // ==================== PUBLIC AXIOS (Không cần token) ====================
@@ -53,9 +59,9 @@ import axios, {
     (config: InternalAxiosRequestConfig) => {
       // Chỉ chạy ở client-side
       if (typeof window !== 'undefined') {
-        const token = localStorage.getItem('token'); // Lấy token từ localStorage
+        const token = getToken(); // Lấy token từ Redux store
         if (token && config.headers) {
-          config.headers.Authorization = `Bearer ${token}`; // Gắn vào Authorization header
+          config.headers.Authorization = `Bearer ${token}`;
         }
       }
       return config;
@@ -67,12 +73,12 @@ import axios, {
   // === Hàm retry request sau khi đã refresh token thành công ===
   //
   const retryRequest = (originalConfig: AxiosRequestConfig): Promise<any> => {
-    const newToken = localStorage.getItem('token'); // Lấy token mới từ localStorage
+    const newToken = getToken(); // Lấy token mới từ Redux store
   
     // Nếu không có token mới, redirect về login
     if (!newToken) {
       window.location.href = '/login';
-      return new Promise(() => {}); // "kill" promise
+      return new Promise(() => {});
     }
   
     // Gắn lại token mới vào request cũ
@@ -81,7 +87,6 @@ import axios, {
       Authorization: `Bearer ${newToken}`,
     };
   
-    // Gửi lại request với config gốc
     return privateAxios(originalConfig);
   };
   
@@ -94,7 +99,7 @@ import axios, {
   
     // Nếu response lỗi
     async (error: AxiosError) => {
-      const originalConfig = error.config;
+      const originalConfig = error.config as ExtendedInternalAxiosRequestConfig;
   
       // Nếu không có phản hồi từ server (lỗi mạng...)
       if (!error.response) {
@@ -104,9 +109,9 @@ import axios, {
   
       const status = error.response.status;
   
-      // Nếu lỗi là 401 hoặc 403 và chưa retry lần nào
-      if ((status === 401 || status === 403) && !originalConfig._retry) {
-        originalConfig._retry = true; // Đánh dấu là đã thử refresh
+      // Kiểm tra originalConfig tồn tại
+      if (originalConfig && (status === 401 || status === 403) && !originalConfig._retry) {
+        originalConfig._retry = true;
   
         // Nếu đang trong quá trình refresh → chờ promise đó
         if (isRefreshing) {
@@ -129,13 +134,13 @@ import axios, {
   
           const newToken = response.data?.token;
           if (newToken) {
-            localStorage.setItem('token', newToken); // Lưu token mới vào localStorage
+            setToken(newToken); // Lưu token mới vào Redux store
           }
   
           return retryRequest(originalConfig); // Retry lại request cũ
         } catch (refreshErr) {
           console.warn('Refresh token failed', refreshErr);
-          localStorage.removeItem('token'); // Xoá token cũ
+          removeToken(); // Xoá token cũ từ Redux store
           window.location.href = '/login'; // Chuyển về trang đăng nhập
           return new Promise(() => {});
         } finally {
