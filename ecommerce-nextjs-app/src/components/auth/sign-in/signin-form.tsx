@@ -95,7 +95,7 @@ export function SigninForm({ className, ...props }: React.ComponentPropsWithoutR
         {/* Link đến trang đăng ký */}
         <div className="text-center text-sm">
           {/* Don&apos;t have an account?{' '} */}Chưa có tài khoản?{' '}
-          <Link href="/register" className="underline underline-offset-4 text-blue-500 hover:text-blue-700">
+          <Link href="/sign-up" className="underline underline-offset-4 text-blue-500 hover:text-blue-700">
             Đăng ký tại đây
           </Link>
         </div>
