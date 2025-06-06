@@ -61,5 +61,12 @@ export const API_ENDPOINTS = {
     GETALL: `${API_BASE}/auth/sessions`,
     REVOKE: `${API_BASE}/auth/sessions`,
   },
+  COFFEE:{
+    GETALL: `/coffee/get`,
+    GET_BY_ID:`/coffee/:id/get`,
+    CREATE: `/coffee`,
+    UPDATE: `/coffee/:id`,
+    DELETE: `/coffee/:id`
+  }
   // ... các endpoints khác
 }

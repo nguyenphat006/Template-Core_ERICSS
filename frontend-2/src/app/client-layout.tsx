@@ -11,7 +11,7 @@ export default function ClientLayout({
   useEffect(() => {
     const getCsrfToken = async () => {
       try {
-        await authService.getCsrfToken();
+        // await authService.getCsrfToken();
       } catch (error) {
         console.error('Failed to get CSRF token:', error);
       }
