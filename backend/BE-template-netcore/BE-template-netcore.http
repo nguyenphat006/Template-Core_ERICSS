@@ -1,0 +1,6 @@
+@BE_template_netcore_HostAddress = http://localhost:5101
+
+GET {{BE_template_netcore_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
