@@ -5,6 +5,12 @@
 *.user
 *.userosscache
 *.sln.docstates
+*.mdf
+*.ldf
+*.ndf
+Database/*.mdf
+Database/*.ldf
+
 
 # Build results
 [Dd]ebug/

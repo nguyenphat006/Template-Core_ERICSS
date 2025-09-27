@@ -1,0 +1,2 @@
+MIGRATE DB FIRST:
+Scaffold-DbContext  -UseDatabaseNames "Server=ERICSS\ADMIN;Database=Template_Ericss;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DbContent -Project ENTITIES -StartupProject BE-template-netcore -Force
