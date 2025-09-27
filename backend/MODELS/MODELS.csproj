@@ -21,4 +21,10 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SYSTEM\DemoModels\Dtos\" />
+    <Folder Include="SYSTEM\DemoModels\Response\" />
+    <Folder Include="SYSTEM\DemoModels\Request\" />
+  </ItemGroup>
+
 </Project>
