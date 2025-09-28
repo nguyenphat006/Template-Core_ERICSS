@@ -1,4 +1,4 @@
-﻿# 🚀 Fullstack Web App | .NET Web API + Next.js By ERICSS Developer
+﻿# 🚀 Fullstack Web App | .NET Web API + Next.js By ERICSS Developer & Nguyen Phat
 [![.NET](https://img.shields.io/badge/.NET-8.0-blue?logo=dotnet&style=flat-square)](https://dotnet.microsoft.com/en-us/)
 [![Next.js](https://img.shields.io/badge/Next.js-15.0-black?logo=next.js&style=flat-square)](https://nextjs.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.24-blue?logo=tailwindcss&style=flat-square)](https://tailwindcss.com/)
@@ -422,7 +422,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **ERICSS Developer**
 - GitHub: [@ericss-developer](https://github.com/nguyenphat006)
-- Email: developer@ericss.com
+- Email: nguyendangphat1505@gmail.com
 
 ---
 
