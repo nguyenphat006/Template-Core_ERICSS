@@ -1,12 +1,17 @@
-using BE_template_netcore;
-using ENTITIES;
+﻿using BE_template_netcore;
+using ENTITIES.DbContent;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System;
 using System.Configuration;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// 1️⃣ Add DbContext
+builder.Services.AddDbContext<Template_EricssContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add services to the container.
 
