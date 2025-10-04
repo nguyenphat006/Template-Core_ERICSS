@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BASE\" />
     <Folder Include="SYSTEM\DemoModels\Dtos\" />
     <Folder Include="SYSTEM\DemoModels\Response\" />
     <Folder Include="SYSTEM\DemoModels\Request\" />
