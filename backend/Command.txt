@@ -1,2 +1,14 @@
 MIGRATE DB FIRST:
 Scaffold-DbContext  -UseDatabaseNames "Server=ERICSS;Database=Template_Ericss;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DbContent -Project ENTITIES -StartupProject BE-template-netcore -Force
+
+
+MIGRATE CODE FIRST:
+# 1. Tạo migration mới (khi thêm/sửa Entity)
+dotnet ef migrations add TenMigrationMoi --project ENTITIES --startup-project BE-template-netcore
+
+# 2. Áp dụng migration vào DB (tạo/cập nhật bảng)
+dotnet ef database update --project ENTITIES --startup-project BE-template-netcore
+
+
+dotnet ef migrations add TenMigration
+dotnet ef database update
